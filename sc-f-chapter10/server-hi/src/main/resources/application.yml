@@ -1,0 +1,14 @@
+server:
+  port: 8762
+
+spring:
+  application:
+    name: service-hi
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8769/eureka/,http://peer3:8770/eureka/
+      
+#集群地址都写是为了当有一个服务挂掉后其它服务进行注册时能够成功发现服务注册，
+#如果只注册peer1，当peer1挂掉后，因为类似缓存的东西，serveice-hi服务在一段时间内可以正常访问，但是过段时间后就没有client的注册信息，无法再访问
